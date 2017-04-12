@@ -6,11 +6,11 @@ import {observer} from 'mobx-react';
 class Key extends Component {
   @observable pressed = false;
 
-  @action pressKey() {
+  @action pressKey = () => {
     this.pressed = true;
   }
 
-  @action releaseKey() {
+  @action releaseKey = () => {
     this.pressed = false;
   }
 
@@ -18,8 +18,8 @@ class Key extends Component {
     return (
       <div
         className={'key ' + this.props.color + (this.pressed ? ' pressed' : '')}
-        onMouseDown={this.pressKey.bind(this)}
-        onMouseUp={this.releaseKey.bind(this)}
+        onMouseDown={this.pressKey}
+        onMouseUp={this.releaseKey}
       />
     );
   }
