@@ -1,6 +1,19 @@
 .keyboard_panel {
   display: flex;
   background-color: #333;
+  position: relative;
+
+  &:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    box-shadow: inset 0 0px 4px 1px #333;
+    z-index: 999;
+    pointer-events: none;
+  }
 }
 
 .octave {
@@ -13,6 +26,7 @@
   display: inline-block;
   vertical-align: top;
   cursor: pointer;
+  -webkit-user-drag: none;
 
   &:before {
     content: "";

@@ -8,6 +8,7 @@ import {observer, Provider} from 'mobx-react';
 
 const store = observable({
   activeKey: '',
+  globalPressed: false,
   showActiveKey(key) {
     this.activeKey = key;
   }

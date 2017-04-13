@@ -7,22 +7,32 @@ class Key extends Component {
   @observable pressed = false;
   @observable activeKey = '';
 
-  constructor(props) {
-    super(props);
-
-    this.activeKey = '';
-  }
-
   @action pressKey = () => {
+    this.props.store.globalPressed = true;
     this.pressed = true;
     this.activeKey = this.props.name;
     this.props.store.showActiveKey(this.activeKey);
   }
 
   @action releaseKey = () => {
+    this.props.store.globalPressed = false;
     this.pressed = false;
     this.activeKey = '';
     this.props.store.showActiveKey(this.activeKey);
+  }
+
+  @action handleMouseOver = () => {
+    if (this.props.store.globalPressed) {
+      this.pressKey();
+    }
+  }
+
+  @action handleMouseLeave = () => {
+    if (this.props.store.globalPressed) {
+      this.pressed = false;
+      this.activeKey = '';
+      this.props.store.showActiveKey(this.activeKey);
+    }
   }
 
   render() {
@@ -31,7 +41,8 @@ class Key extends Component {
         className={'key ' + this.props.color + (this.pressed ? ' pressed' : '')}
         onMouseDown={this.pressKey}
         onMouseUp={this.releaseKey}
-        onMouseLeave={this.releaseKey}
+        onMouseOver={this.handleMouseOver}
+        onMouseLeave={this.handleMouseLeave}
       />
     );
   }

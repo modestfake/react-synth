@@ -1,0 +1,15 @@
+// Straight
+.ruler {
+  // outline: 1px solid aquamarine;
+  width: 12px;
+  height: 70px;
+  margin: 0 -4px;
+}
+
+.ruler.st-between {
+  background: repeating-linear-gradient(to bottom, #40444e, #40444e 5%, #5b6171 10%);
+}
+
+.ruler.st-left {
+  // background: linear-gradient(180deg, #c1c1c1 0.125em, rgba(0, 0, 0, 0) 0.125em) -1px 1em/50% 1em repeat-y content-box, linear-gradient(180deg, #c1c1c1 0.125em, rgba(0, 0, 0, 0) 0.125em) -1px 1.5em/10% 0.5em repeat-y content-box;
+}

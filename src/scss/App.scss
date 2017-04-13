@@ -11,10 +11,13 @@
 @import "blocks/Mixer";
 
 // Keyboard
-@import "Key";
+@import "controls/Key";
 
 // Controls
-@import "Wheel";
+@import "controls/Wheel";
+@import "controls/Fader";
+
+@import "controls/rulers";
 
 .portamento {
   width: 100px;

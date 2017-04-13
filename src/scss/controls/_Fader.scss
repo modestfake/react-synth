@@ -1,0 +1,107 @@
+$track-color: #2b303b !default;
+$thumb-color: #2b303b !default;
+
+$thumb-height: 16px !default;
+$thumb-width: 8px !default;
+
+$track-width: 100% !default;
+$track-height: 2px !default;
+$track-border-width: 0px !default;
+
+$track-radius: 5px !default;
+$contrast: 5% !default;
+
+@mixin track {
+  cursor: pointer;
+  height: $track-height;
+  transition: all .2s ease;
+  width: $track-width;
+}
+
+@mixin thumb {
+  background: $thumb-color;
+  cursor: pointer;
+  height: $thumb-height;
+  width: $thumb-width;
+}
+
+.fader {
+  position: relative;
+  width: 15%;
+  height: 70px;
+
+  label {
+    position: absolute;
+    top: -12px;
+    left: 0;
+    right: 0;
+
+    text-align: center;
+    color: #aaa;
+    font-size: 9px;
+  }
+}
+
+.fader [type='range'] {
+  transform: rotate(-90deg) translate(-30%, -1140%);
+  -webkit-appearance: none;
+  margin: 0;
+  width: 70px;
+
+  &:focus {
+    outline: 0;
+
+    &::-webkit-slider-runnable-track {
+      background: lighten($track-color, $contrast);
+    }
+
+    &::-ms-fill-lower {
+      background: $track-color;
+    }
+
+    &::-ms-fill-upper {
+      background: lighten($track-color, $contrast);
+    }
+  }
+
+  &::-webkit-slider-runnable-track {
+    @include track;
+    background: $track-color;
+  }
+
+  &::-webkit-slider-thumb {
+    @include thumb;
+    -webkit-appearance: none;
+    margin-top: ((-$track-border-width * 2 + $track-height) / 2) - ($thumb-height / 2);
+  }
+
+  &::-moz-range-track {
+    @include track;
+    background: $track-color;
+  }
+
+  &::-moz-range-thumb {
+    @include thumb;
+  }
+
+  &::-ms-track {
+    @include track;
+    background: transparent;
+    border-color: transparent;
+    border-width: ($thumb-height / 2) 0;
+    color: transparent;
+  }
+
+  &::-ms-fill-lower {
+    background: darken($track-color, $contrast);
+  }
+
+  &::-ms-fill-upper {
+    background: $track-color;
+  }
+
+  &::-ms-thumb {
+    @include thumb;
+    margin-top: 0;
+  }
+}

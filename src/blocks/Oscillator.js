@@ -4,7 +4,7 @@ class Oscillator extends Component {
   render() {
     return (
       <div className="osc">
-        <h4 className="block_header">Oscillator {this.props.osc}</h4>
+        <h4 className="block_header">Osc {this.props.osc}</h4>
       </div>
     );
   }
