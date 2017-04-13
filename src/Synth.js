@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import MainPanel from './MainPanel';
 import BottomPanel from './BottomPanel';
-import './App.scss';
+import './scss/App.scss';
 
 import {observable} from 'mobx';
 import {observer, Provider} from 'mobx-react';

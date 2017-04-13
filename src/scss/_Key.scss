@@ -1,0 +1,73 @@
+.keyboard_panel {
+  display: flex;
+  background-color: #333;
+}
+
+.octave {
+  width: 25%;
+  height: 100%;
+}
+
+.key {
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  cursor: pointer;
+
+  &:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: all 0.1s ease-in-out;
+  }
+
+  &.white {
+    width: 20px;
+    height: 100%;
+    margin: 0 1px;
+    background: linear-gradient(to bottom, rgba(245,245,245,1) 0%, rgba(250,250,250,1) 100%);
+    z-index: 1;
+    transition: all 0.1s ease-in-out;
+
+    &:before {
+      background: linear-gradient(to bottom, rgba(245,245,245,1) 0%, rgba(230,230,230,1) 50%, rgba(225,225,225,1) 100%);
+    }
+
+    &:after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transition: all 0.1s ease-in-out;
+      background: linear-gradient(to bottom, rgba(245,245,245,1) 0%, rgba(230,230,230,0) 40%, rgba(225,225,225,0) 100%);
+      z-index: 2;
+    }
+  }
+
+  &.black {
+    width: 12px;
+    height: 65%;
+    margin: 0 -6px;
+    background: #4a4a4a;
+    z-index: 999;
+
+    &:before {
+      background: linear-gradient(to bottom, rgba(74,74,74,1) 0%, rgba(24,24,24,1) 100%);
+    }
+  }
+
+  &.pressed:before {
+    opacity: 1;
+    box-shadow: inset 0px 0px 1px 0px rgba(0, 0, 0, 0.61);
+  }
+  &.pressed:after {
+    opacity: 1;
+  }
+}

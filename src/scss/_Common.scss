@@ -1,0 +1,67 @@
+.App {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: #2b303b;
+}
+
+.Synth {
+  position: relative;
+  @include shadow(3);
+}
+
+.active_key {
+  position: absolute;
+  top: -100px;
+  left: 0;
+  right: 0;
+  margin: 0;
+  font-size: 72px;
+  color: #f5f5f5;
+  text-align: center;
+  font-weight: 300;
+}
+
+// MAIN PANEL
+.main_panel {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px;
+}
+.row.top {
+  height: 120px;
+}
+.row.middle {
+  height: 240px;
+}
+.row > div {
+  height: 100%;
+  border: 1px solid $border_color;
+}
+
+.block_header {
+  margin: 0;
+  padding: 2px 0;
+  background-color: $border_color;
+  text-align: center;
+  color: #ddd;
+  font-size: 12px;
+  font-weight: 300;
+  text-transform: uppercase;
+}
+
+// BOTTOM PANEL
+.bottom_panel {
+  height: 100px;
+  // border: 2px solid rgba(255, 255, 255, 0.3);
+  background-color: rgba(255, 255, 255, 0.1);
+
+  display: flex;
+}

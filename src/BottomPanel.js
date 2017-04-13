@@ -17,6 +17,7 @@ class BottomPanel extends Component {
           <Octave octave="4" />
           <Octave octave="5" />
         </div>
+        <div className="portamento"></div>
       </div>
     );
   }
