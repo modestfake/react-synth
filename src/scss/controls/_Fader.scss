@@ -27,18 +27,24 @@ $contrast: 5% !default;
 
 .fader {
   position: relative;
-  width: 15%;
+  width: 25px;
   height: 70px;
 
   label {
     position: absolute;
     top: -12px;
-    left: 0;
-    right: 0;
+    left: -10px;
+    right: -10px;
 
     text-align: center;
     color: #aaa;
     font-size: 9px;
+    text-transform: uppercase;
+    user-select: none;
+  }
+
+  &.master label {
+    color: #d66d6d;
   }
 }
 

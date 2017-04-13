@@ -1,0 +1,28 @@
+.mixer {
+  width: 29%;
+  display: flex;
+  flex-direction: column;
+}
+
+.mixer_wrapper {
+  height: 60%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  & > div {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.mix_parts {
+  width: 35%;
+}
+
+.mix_master {
+  width: 30%;
+}
+.mix_meter {
+  width: 35%;
+}
