@@ -6,6 +6,7 @@ class BottomPanel extends Component {
   render() {
     return (
       <div className="bottom_panel">
+        {/* <input type="number" defaultValue="3" min="1" max="12" /> */}
         <div className="wheels">
           <Wheel />
           <Wheel />

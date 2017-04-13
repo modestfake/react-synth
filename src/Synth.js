@@ -3,15 +3,29 @@ import MainPanel from './MainPanel';
 import BottomPanel from './BottomPanel';
 import './App.scss';
 
+import {observable} from 'mobx';
+import {observer, Provider} from 'mobx-react';
+
+const store = observable({
+  activeKey: '',
+  showActiveKey(key) {
+    this.activeKey = key;
+  }
+});
+
+@observer
 class Synth extends Component {
   render() {
     return (
-      <div className="App">
-        <div className="Synth">
-          <MainPanel />
-          <BottomPanel />
+      <Provider store={store}>
+        <div className="App">
+          <div className="Synth">
+            <h2 className="active_key">{store.activeKey}</h2>
+            <MainPanel />
+            <BottomPanel />
+          </div>
         </div>
-      </div>
+      </Provider>
     );
   }
 }
