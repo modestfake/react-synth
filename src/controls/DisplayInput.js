@@ -1,27 +1,42 @@
 import React, { Component } from 'react';
 
 import {observable, action} from 'mobx';
-import {observer} from 'mobx-react';
+import {observer, inject} from 'mobx-react';
 
-@observer
+@inject('store') @observer
 class DisplayInput extends Component {
-  @observable value = 0;
-
   constructor(props) {
     super(props);
 
-    // this.value = props.defaultValue;
+    this.value = props.defaultValue;
+    this.dragInit = this.dragInit.bind(this);
   }
+
+  @observable value = 0;
 
   @action handleChange = (newValue) => {
     this.value = newValue;
+  }
+
+  dragInit(e) {
+    const dragProps = {
+      dragYStart: e.pageY,
+      min: this.props.min,
+      max: this.props.max,
+      currentValue: this.value
+    };
+    
+    this.props.store.handleMouseDown(dragProps);
   }
 
   render() {
     return (
       <div className="tune_group">
         <span className="dv_title">{this.props.title}</span>
-        <span className="dv_input">{this.value}</span>
+        <span
+          className="dv_input"
+          onMouseDown={this.dragInit}
+        >{this.value}</span>
         <input
           type="hidden"
           value={this.value}

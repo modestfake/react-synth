@@ -13,6 +13,12 @@ class Oscillator extends Component {
     this.knobValue = newValue;
   }
 
+  constructor(props) {
+    super(props);
+
+    this.preset = props.preset;
+  }
+
   render() {
     return (
       <div className="osc">
@@ -20,39 +26,45 @@ class Oscillator extends Component {
         <div className="osc_octave">
           <DisplayInput
             title="Octave"
+            min={-3}
+            max={3}
+            defaultValue={this.preset.octave}
           />
           <DisplayInput
             title="Note"
+            min={0}
+            max={12}
+            defaultValue={this.preset.note}
           />
         </div>
         <div className="osc_knobs">
           <div className="osc_knob_group">
             <Knob
-              defaultValue={100}
+              defaultValue={this.preset.volume}
               title="Volume"
             />
           </div>
           <div className="osc_knob_group">
             <Knob
-              defaultValue={0}
+              defaultValue={this.preset.phase}
               title="Phase"
             />
           </div>
           <div className="osc_knob_group">
             <Knob
-              defaultValue={0}
+              defaultValue={this.preset.detune}
               title="Detune"
             />
           </div>
           <div className="osc_knob_group">
             <Knob
-              defaultValue={0}
+              defaultValue={this.preset.stereo}
               title="Stereo"
             />
           </div>
           <div className="osc_knob_group">
             <Knob
-              defaultValue={0}
+              defaultValue={this.preset.pan}
               title="Pan"
               min={-64}
               max={64}

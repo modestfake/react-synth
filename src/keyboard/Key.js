@@ -8,27 +8,27 @@ class Key extends Component {
   @observable activeKey = '';
 
   @action pressKey = () => {
-    this.props.store.globalPressed = true;
+    this.props.store.globalKeyPressed = true;
     this.pressed = true;
     this.activeKey = this.props.name;
     this.props.store.showActiveKey(this.activeKey);
   }
 
   @action releaseKey = () => {
-    this.props.store.globalPressed = false;
+    this.props.store.globalKeyPressed = false;
     this.pressed = false;
     this.activeKey = '';
     this.props.store.showActiveKey(this.activeKey);
   }
 
   @action handleMouseOver = () => {
-    if (this.props.store.globalPressed) {
+    if (this.props.store.globalKeyPressed) {
       this.pressKey();
     }
   }
 
   @action handleMouseLeave = () => {
-    if (this.props.store.globalPressed) {
+    if (this.props.store.globalKeyPressed) {
       this.pressed = false;
       this.activeKey = '';
       this.props.store.showActiveKey(this.activeKey);
