@@ -5,8 +5,8 @@ class Mixer extends Component {
   render() {
     return (
       <div className="mixer">
-        <h4 className="block_header">Mixer</h4>
         <div className="mixer_wrapper">
+          <h4 className="block_header">Mixer</h4>
           <div className="mix_parts">
             <div className="ruler st-left"></div>
             <Fader type="MIX A" defaultValue="50" />
@@ -23,6 +23,8 @@ class Mixer extends Component {
 
           <div className="mix_meter"></div>
         </div>
+
+        <div className="logo"><span>Sylenth1</span></div>
       </div>
     );
   }

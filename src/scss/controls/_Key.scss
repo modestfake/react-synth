@@ -2,6 +2,7 @@
   display: flex;
   background-color: #333;
   position: relative;
+  -webkit-user-drag: none;
 
   &:before {
     content: "";
@@ -26,7 +27,6 @@
   display: inline-block;
   vertical-align: top;
   cursor: pointer;
-  -webkit-user-drag: none;
 
   &:before {
     content: "";

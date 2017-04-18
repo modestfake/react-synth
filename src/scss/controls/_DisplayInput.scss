@@ -1,0 +1,28 @@
+.tune_group {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 10px;
+}
+
+.dv {
+  &_title {
+    color: #aaa;
+    font-size: 9px;
+    text-transform: uppercase;
+  }
+
+  &_input {
+    width: 16px;
+    padding-right: 3px;
+    background-color: #20b4e4;
+    box-shadow: inset 0px 1px 1px 1px rgba(0, 0, 0, 0.65);
+    border-left: 1px solid #717171;
+    border-right: 1px solid #717171;
+    // border: 1px solid #20b4e4;
+    text-align: right;
+    color: #2b303b;
+    font-size: 9px;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+}

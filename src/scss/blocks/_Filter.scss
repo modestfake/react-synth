@@ -1,11 +1,19 @@
-.filter_group {
-  width: 29%;
-}
+.filter {
+  &_group {
+    width: 29%;
 
-.filter_osc {
-  height: 60%;
-}
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
 
-.filter_main {
-  height: 40%;
+  &_osc {
+    width: 100%;
+    height: 58%;
+  }
+
+  &_main {
+    width: 100%;
+    height: 38%;
+  }
 }

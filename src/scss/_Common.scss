@@ -9,6 +9,7 @@
 
 .Synth {
   position: relative;
+  user-select: none;
   @include shadow(3);
 }
 
@@ -43,10 +44,23 @@
 }
 .row > div {
   height: 100%;
-  border: 1px solid $border_color;
+
+  &.osc,
+  &.env,
+  &.screen,
+  & .filter_osc,
+  & .filter_main,
+  & .mixer_wrapper,
+  & .logo {
+    border: 1px solid $border_color;
+  }
+
+
 }
 
 .block_header {
+  width: 100%;
+  height: 17px;
   margin: 0;
   padding: 2px 0;
   background-color: $border_color;

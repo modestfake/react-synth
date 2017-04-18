@@ -2,17 +2,43 @@
   width: 29%;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 }
 
 .mixer_wrapper {
   height: 60%;
   display: flex;
+  flex-flow: wrap row;
   justify-content: center;
-  align-items: center;
 
   & > div {
     display: flex;
     justify-content: center;
+  }
+}
+
+.logo {
+  height: 36%;
+  font-family: 'Cookie', cursive;
+  color: #ddd;
+  font-size: 48px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  span {
+    position: relative;
+
+    &:before {
+      content: "react app";
+      position: absolute;
+      bottom: -3px;
+      right: 3px;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 12px;
+      letter-spacing: 0.15em;
+    }
   }
 }
 
