@@ -8,17 +8,15 @@ class Key extends Component {
   @observable activeKey = '';
 
   @action pressKey = () => {
-    this.props.store.globalKeyPressed = true;
     this.pressed = true;
     this.activeKey = this.props.name;
-    this.props.store.showActiveKey(this.activeKey);
+    this.props.store.showActiveKey(this.activeKey, true);
   }
 
   @action releaseKey = () => {
-    this.props.store.globalKeyPressed = false;
     this.pressed = false;
     this.activeKey = '';
-    this.props.store.showActiveKey(this.activeKey);
+    this.props.store.showActiveKey(this.activeKey, false);
   }
 
   @action handleMouseOver = () => {
@@ -31,7 +29,7 @@ class Key extends Component {
     if (this.props.store.globalKeyPressed) {
       this.pressed = false;
       this.activeKey = '';
-      this.props.store.showActiveKey(this.activeKey);
+      this.props.store.showActiveKey(this.activeKey, 'over');
     }
   }
 

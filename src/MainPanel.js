@@ -8,21 +8,15 @@ import Mixer from './blocks/Mixer';
 
 import {observer, inject} from 'mobx-react';
 
-@inject('store')
+@inject('store') @observer
 class MainPanel extends Component {
-  constructor(props) {
-    super(props);
-
-    this.preset = props.store.activePreset.config;
-  }
-
   render() {
     return (
       <div className="main_panel">
         <div className="row top">
-          <Oscillator osc="1" preset={this.preset.osc1} />
+          <Oscillator osc="1" preset={this.props.store.activePreset.config.osc1} />
           <Envelope type="amp" />
-          <Oscillator osc="2" preset={this.preset.osc2} />
+          <Oscillator osc="2" preset={this.props.store.activePreset.config.osc2} />
         </div>
         <div className="row middle">
           <div className="filter_group">

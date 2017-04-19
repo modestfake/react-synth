@@ -25,13 +25,15 @@ class Oscillator extends Component {
         <h4 className="block_header">Osc {this.props.osc}</h4>
         <div className="osc_octave">
           <DisplayInput
-            title="Octave"
+            name="octave"
+            osc={this.props.osc}
             min={-3}
             max={3}
             defaultValue={this.preset.octave}
           />
           <DisplayInput
-            title="Note"
+            name="note"
+            osc={this.props.osc}
             min={0}
             max={12}
             defaultValue={this.preset.note}
@@ -41,33 +43,37 @@ class Oscillator extends Component {
           <div className="osc_knob_group">
             <Knob
               defaultValue={this.preset.volume}
-              title="Volume"
+              name="volume"
+              osc={this.props.osc}
             />
           </div>
           <div className="osc_knob_group">
             <Knob
               defaultValue={this.preset.phase}
-              title="Phase"
+              name="phase"
+              osc={this.props.osc}
             />
           </div>
           <div className="osc_knob_group">
             <Knob
               defaultValue={this.preset.detune}
-              title="Detune"
+              name="detune"
+              osc={this.props.osc}
             />
           </div>
           <div className="osc_knob_group">
             <Knob
               defaultValue={this.preset.stereo}
-              title="Stereo"
+              name="stereo"
             />
           </div>
           <div className="osc_knob_group">
             <Knob
               defaultValue={this.preset.pan}
-              title="Pan"
+              name="pan"
               min={-64}
               max={64}
+              osc={this.props.osc}
             />
           </div>
         </div>

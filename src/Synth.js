@@ -4,84 +4,90 @@ import BottomPanel from './BottomPanel';
 import './scss/App.scss';
 import Presets from './Presets';
 
-import {observable} from 'mobx';
+import {observable, action} from 'mobx';
 import {observer, Provider} from 'mobx-react';
 import throttle from 'lodash.throttle';
 
-const store = observable({
-  activePreset: Presets[0],
-  activeKey: '',
-  globalKeyPressed: false,
-  globalDisplayInputPressed: false,
-  dragProps: {
-    dragYStart: 0,
-    min: 0,
-    max: 0,
-    currentValue: 0,
-    tempDragYStart: 0
-  },
-  maxDragDistance: 200,
-  result: 0,
-  showActiveKey(key) {
-    this.activeKey = key;
-  },
-  handleMouseDown(dragOptions) {
-    this.globalDisplayInputPressed = true;
-    this.dragProps = Object.assign(this.dragProps, dragOptions);
-    this.dragProps.tempDragYStart = dragOptions.dragYStart;
-  },
-  handleMouseUp() {
-    this.globalDisplayInputPressed = false;
-    this.dragProps.dragYStart = 0;
-  }
-});
-
 @observer
 class Synth extends Component {
-  constructor(props) {
-    super(props);
+  @observable store = {
+    activePreset: Presets[0],
+    activeKey: '',
+    test: '',
+    globalKeyPressed: false,
+    globalDisplayInputPressed: false,
+    dragProps: {
+      name: '',
+      osc: 0,
+      dragYStart: 0,
+      min: 0,
+      max: 0,
+      currentValue: 0,
+      tempDragYStart: 0
+    },
+    maxDragDistance: 200,
+    result: 0,
+    showActiveKey(key, active) {
+      this.activeKey = key;
+      if (active !== 'over') this.globalKeyPressed = active;
+    },
+    handleMouseDown(dragOptions) {
+      this.activeKey = ' ';
+      this.globalDisplayInputPressed = true;
+      this.dragProps = Object.assign(this.dragProps, dragOptions);
+      this.dragProps.tempDragYStart = dragOptions.dragYStart;
+    },
+    handleMouseUp() {
+      this.store.activeKey = '';
+      this.store.globalDisplayInputPressed = false;
+      this.store.dragProps.dragYStart = 0;
+      console.log('10. Mouse up', this.store);
+    },
+    handleMouseMove(e) {
+      this.store.calcPagePos(e.pageY);
+    },
+    calcPagePos(currentY) {
+      if (this.globalDisplayInputPressed) {
+        const dragYStart = this.dragProps.dragYStart;
+        const dragMaxUpY = dragYStart - this.maxDragDistance;
+        const dragMaxDownY = dragYStart + this.maxDragDistance;
+        const minVal = this.dragProps.min;
+        const maxVal = this.dragProps.max;
 
-    this.calcPagePos = throttle(this.calcPagePos, 50);
-  }
+        if (currentY >= dragMaxUpY && currentY <= dragMaxDownY) {
+            this.dragProps.tempDragYStart = currentY;
 
-  handleMouseMove(e) {
-    this.calcPagePos(e.pageY);
-  }
+          const newVal = (maxVal - minVal) / this.maxDragDistance * (dragYStart - currentY);
 
-  calcPagePos(currentY) {
-    if (store.globalDisplayInputPressed) {
-      const dragYStart = store.dragProps.dragYStart;
-      const tempDragYStart = store.dragProps.tempDragYStart;
-      const dragMaxUpY = dragYStart - store.maxDragDistance;
-      const dragMaxDownY = dragYStart + store.maxDragDistance;
-      const minVal = store.dragProps.min;
-      const maxVal = store.dragProps.max;
-
-      if (currentY >= dragMaxUpY && currentY <= dragMaxDownY) {
-          store.dragProps.tempDragYStart = currentY;
-
-        const newVal = (maxVal - minVal) / store.maxDragDistance * (dragYStart - currentY);
-
-        if (newVal >= minVal
-            && newVal <= maxVal
-            && Math.round(newVal) !== store.dragProps.currentValue) {
-          console.log(Math.round(newVal));
+          if (newVal >= minVal
+              && newVal <= maxVal
+              && Math.round(newVal) !== this.dragProps.currentValue
+            ) {
+              const value = Math.round(newVal);
+              this.activePreset.config[`osc${this.dragProps.osc}`][this.dragProps.name] = Math.round(newVal);
+          }
         }
       }
     }
+  };
+
+  constructor(props) {
+    super(props);
+
+    this.store.calcPagePos = throttle(this.store.calcPagePos, 30);
   }
 
 
   render() {
     return (
-      <Provider store={store}>
+      <Provider store={this.store}>
         <div
           className="App"
-          onMouseUp={() => store.handleMouseUp()}
-          onMouseMove={this.handleMouseMove.bind(this)}
+          onMouseUp={this.store.handleMouseUp.bind(this)}
+          onMouseMove={this.store.handleMouseMove.bind(this)}
         >
           <div className="Synth">
-            <h2 className="active_key">{store.activeKey}</h2>
+            <h2 className="active_key">{this.store.activeKey}</h2>
             <MainPanel />
             <BottomPanel />
           </div>
